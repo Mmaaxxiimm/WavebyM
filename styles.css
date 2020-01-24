@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+
+
+/* ------------------ */
+/*BASIC STYLES + HEADER + FOOTER*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #2f303a;
+    font-family: Poppins, sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    /*We'll use a trick to make each page go the full length of the viewport. The trick consists of the next line and the class 'full-heigt-grow'*/
+    min-height: 100vh;
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    /*We added the line below when creating the discover page, to make sure the FOOTER is all the way AT THE BOTTOM*/
+    flex-grow: 1;
+}
+
+.full-height-grow {
+    /*With the lines below, we don't change anything about how the items are laid out vertically. But we do create the ability to add in flex-grow properties in order to make one element in the section to grow to the entire height of our page.*/
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+    color: inherit;
+    text-decoration: none;
+}
+
+.brand-logo-name {
+    margin-left: 1rem;
+}
+
+.main-nav ul, .footer-nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-nav a, .footer-nav a {
+    color: inherit;
+    text-decoration: none;
+    padding: 1rem;
+}
+
+.main-nav a:hover, .footer-nav a:hover {
+    color: #adadad;
+}
+
+.main-header, .main-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-header {
+    height: 140px;
+}
+
+.main-footer {
+    height: 70px;
+    background-color: #202027;
+    font-weight: bold;
+}
+
+.social-link img {
+    width: 1em;
+    margin-right: .25rem;
+}
+
+/* ------------------ */
+/*SHARED STYLES*/
+/*These styles are shared among pages. Fe: title, subtitle*/
+
+.title {
+    font-weight: 500;
+    font-size: 3em;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+}
+
+.btn {
+    color: #fff;
+    background-color: #1762a7;
+    padding: .75rem 1.5rem;
+    border-radius: .5rem;
+    text-decoration: none;
+    font-size: .9rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #2180d8;
+}
+
+.btn:focus {
+    background-color: #2976ff;
+}
+
+/* ------------------ */
+/*INDEX/HOME PAGE STYLES*/
+
+.home-main-section {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.home-main-section .img-wrapper {
+    flex-grow: 1;
+    display: flex;
+    /*The line below makes the direction vertical, so than we can push things to the very bottom of the element*/
+    flex-direction: column;
+    align-items: stretch;
+    /*It'll push the image as close to the text to the right as possible; the end of the element is on the right side of it*/
+    justify-content: flex-end;
+}
+
+.home-main-section .lady-image {
+    /*We're going to use a background-image property in order to place the image exactly where we want it inside the div/element. That wouldn't be possible if we used the 'img' tag!*/
+    background-image: url('images/landing-page-girl.png');
+    /*So it'll grow the full height of the viewport*/
+    flex-grow: 1;
+    max-height: 70vh;
+    min-width: 30%;
+    /*The line below will make sure the image contains the element, WITHOUT CROPPING OR SCALING UNNATURALLY*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+
+.home-main-section .call-to-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem;
+    align-self: center;
+}
+
+@media (max-width: 900px) {
+    .home-main-section .img-wrapper {
+        display: none;
+    }
+    
+    .home-main-section {
+        justify-content: center;
+    }
+}
+
+/*Bottom-left circle*/
+.home-page-circle-1 {
+    position: absolute;
+    width: 25vw;
+    height: 25vw;
+    border-radius: 50%;
+    background-color: rgb(188, 58, 128, .1);
+    bottom: 5vw;
+    left: 5vw;
+    z-index: -1;
+}
+
+/*Middle circle*/
+.home-page-circle-2 {
+    position: absolute;
+    width: 25vw;
+    height: 25vw;
+    border-radius: 50%;
+    background-color: rgb(52, 87, 178, .1);
+    top: 15vh;
+    left: 30vw;
+    z-index: -1;
+}
+
+/*Bottom-right circle*/
+.home-page-circle-3 {
+    position: absolute;
+    overflow: hidden;
+    width: 45vw;
+    height: 45vw;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+/*This circle is outside the page. That is why we have to use a pseudo-element. That way we can OVERFLOW THE PARENT, and still NOT CAUSE the page to scroll. We need to use 'overflow: hidden' on the parent element to achieve that! And also we need to remove the border radius from the parent element!*/
+.home-page-circle-3::before {
+    content: "";
+    transform: translate(40%, 40%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgb(52, 87, 178, .1);
+}
+
+/* ------------------ */
+/*DISCOVER PAGE STYLES*/
+
+.discover-main-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.discover-main-section .covers-image {
+    width: 30vw;
+    /*So the cover-image is never touching the text to the left too closely*/
+    margin-left: 2rem;
+    /*The line below makes sure the image never becomes too strechted, so that it'll always be a perfect square (this goes together with the parent element set ALIGN-ITEMS set to  CENTER. And a max-width so that it never becomes too large.*/
+    height: auto;
+    max-width: 350px;
+}
+
+.icon-section {
+    display: flex;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem;
+    /*The padding allows for us to have a nice background image*/
+    padding: .75rem;
+    width: 100px;
+    height: 100px;
+    background-color: #202027;
+    margin-bottom: 2rem;
+}
+
+.icon img {
+    width: 40px;
+}
+
+@media (max-width: 800px) {
+    .discover-main-section {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .discover-main-section .covers-image {
+        margin-top: 2rem;
+        height: 30vh;
+        width: auto;
+    }
+}
+
+/* ------------------ */
+/*JOIN PAGE STYLES*/
+
+.join-main-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.join-text {
+    font-size: 3.5em;
+    font-weight: bold;
+    /*We're removing the margin because HEADERS naturally have a margin*/
+    margin: 0;
+}
+
+.accent-text {
+    color: #BC3a80;
+}
+
+.join-form {
+    background-color: #202027;
+    width: 50vw;
+    max-width: 50%;
+    padding: 2rem 4rem;
+    border-radius: 20px;
+}
+
+.input-group {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.input-group input {
+   /*The line below removes the blue border when the input field is clicked!*/
+    outline: none;
+    background: none;
+    border: 1px solid #2E3852;
+    font-size: 1em;
+    padding: .5em;
+    /*Color has to be white, so it can inherit it*/
+    color: inherit;
+    border-radius: 5px;
+}
+
+.input-group input:focus {
+    border-color: #596da0;
+}
+
+@media (max-width: 900px) {
+    .join-main-section {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .join-form {
+        width: 80vw;
+        /*The line below essentially means that the width doesn't matter, it will just inherit the width from the width of the element;*/
+        max-width: inherit;
+        margin: 2rem 0;
+    }
+}
+
+/*Bottom-left circle*/
+.join-page-circle-1 {
+    position: absolute;
+    overflow: hidden;
+    width: 35vw;
+    height: 35vw;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/*This circle is outside the page. That is why we have to use a pseudo-element. That way we can OVERFLOW THE PARENT, and still NOT CAUSE the page to scroll. We need to use 'overflow: hidden' on the parent element to achieve that! And also we need to remove the border radius from the parent element!*/
+.join-page-circle-1::before {
+    content: "";
+    transform: translateX(-20%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgb(188, 58, 128, .1);
+}
+
+/*Up-middle circle*/
+.join-page-circle-2 {
+    position: absolute;
+    overflow: hidden;
+    width: 30vw;
+    height: 30vw;
+    top: 0;
+    left: 20vw;
+    z-index: -1;
+}
+
+/*This circle is outside the page. That is why we have to use a pseudo-element. That way we can OVERFLOW THE PARENT, and still NOT CAUSE the page to scroll. We need to use 'overflow: hidden' on the parent element to achieve that! And also we need to remove the border radius from the parent element!*/
+.join-page-circle-2::before {
+    content: "";
+    transform: translateY(-30%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgb(52, 87, 178, .1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
